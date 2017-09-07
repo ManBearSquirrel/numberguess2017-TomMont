@@ -26,32 +26,44 @@ public class NumberGuess
     {
         Random random = new Random();
         number = random.nextInt(100) + 1;
+
+
     }
 
     public void play()
     {
         System.out.println("Time to play number guess");
+        System.out.println("Choose a number between 1 and 100");
 
         User user = new User();
-
+        int rounds = 0;
         int guess;
 
         do
         {
             guess = user.getInt("What is your guess? ");
 
-            if (guess < number)
+            if (guess <= number - 11||guess >= number + 11)
             {
-                System.out.println("Higher!");
+                System.out.println("Cold!");
+                rounds++;
             }
-            else if (guess > number)
+            else if (guess <= number - 5 ||guess >= number + 5)
             {
-                System.out.println("Lower!");
+                System.out.println("Warm!");
+                rounds++;
             }
+            else if (guess < number || guess > number)
+            {
+                System.out.println("Fire!");
+                rounds++;
+            }
+
 
         } while (guess != number);
 
         System.out.println("You got it!");
+        System.out.println("It took you " + rounds + " guesses to win!");
 
     }
 
